@@ -52,14 +52,14 @@ while(ret):
                     first_read=True
             
     else:
-        cv2.putText(img,"No face detected",(100,100),cv2.FONT_HERSHEY_PLAIN, 3, (0,255,0),2)
+        cv2.putText(img, "No face detected", (100, 100), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 2)
 
     # Controlling the algorithm with keys
     cv2.imshow("Mirrored Image", img)
     a = cv2.waitKey(1)
-    if(a==ord('q')):
+    if (a == ord('q')):
         break
-    elif(a==ord('s') and first_read):
+    elif (a == ord('s') and first_read):
         # This will start the detection
         first_read = False
 
