@@ -2,6 +2,8 @@
 import numpy as np
 import cv2
 
+# marcus is a horrible person :)
+
 #Initializing the face and eye cascade classifiers from xml files
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye_tree_eyeglasses.xml')
