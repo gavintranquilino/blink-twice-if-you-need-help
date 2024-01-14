@@ -24,6 +24,8 @@ is_blinking = False
 blink_count = 0
 last_blink_time = 0
 
+start_call_sequence = False
+
 while ret:
     ret, img = cap.read()
 
@@ -61,7 +63,9 @@ while ret:
                     if time.time() - last_blink_time < blink_time_value:
                         print("Double blink detected")
                         last_blink_time = time.time()
-                        make_emergency_call()
+                        
+                        if start_call_sequence:
+                            make_emergency_call()
 
                     else:
                         last_blink_time = time.time()
@@ -85,6 +89,9 @@ while ret:
     key = cv2.waitKey(1)
     if key == ord('q'):
         break
+    if key == ord('s'):
+        print("calling enabled")
+        start_call_sequence = True
 
 cap.release()
 cv2.destroyAllWindows()
