@@ -2,6 +2,9 @@ import numpy as np
 import cv2
 import time
 
+# import call.py make_emergency_call function
+from call import make_emergency_call
+
 blink_time_value = 0.4
 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
@@ -58,6 +61,8 @@ while ret:
                     if time.time() - last_blink_time < blink_time_value:
                         print("Double blink detected")
                         last_blink_time = time.time()
+                        make_emergency_call()
+
                     else:
                         last_blink_time = time.time()
 
