@@ -2,9 +2,12 @@ from twilio.twiml.voice_response import VoiceResponse
 from twilio.rest import Client
 
 # Twilio credentials
-account_sid = 'AC5c67855eab53a5b01debe4b3e813ee69'
-auth_token = '74d9aa52db3663eb6bc28500e337436a'
+account_sid = "test"
+auth_token = "test"
 twilio_phone_number = +12159774320
+
+
+# simple number entry for what number you want to call - simple boolean done system
 recipient_phone_number = +5195055856
 
 # Create a Twilio client
@@ -13,9 +16,11 @@ client = Client(account_sid, auth_token)
 try:
     # Create TwiML for a voice call with a custom message
     twiml = VoiceResponse()
-    twiml.say("Hello! This is a custom message from your Python script using Twilio.")
+    twiml.say("You lost the game")
     twiml.pause(length=1)  # Add a pause for better clarity
     twiml.say("Thank you for using Twilio!")
+
+    # their current location is (approx coordinates - put that in)
 
     # Make a phone call
     call = client.calls.create(
