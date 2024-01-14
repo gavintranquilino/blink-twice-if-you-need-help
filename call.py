@@ -2,6 +2,7 @@ from twilio.twiml.voice_response import VoiceResponse
 from twilio.rest import Client
 import requests
 import time
+import json
 
 def entered(string):
     for i in string:
@@ -44,29 +45,14 @@ def get_ip_info():
         print(f"Error: {e}")
 
 # Twilio credentials
-account_sid = "your key"
-auth_token = "your key"
-twilio_phone_number = "your number [int]"
-print(twilio_phone_number)
+with open("config.json") as f:
+    config_data = json.load(f)
 
-
-# simple number entry for what number you want to call - simple boolean done system
-
-done = False
-
-while not done:
-    print("Please enter a ten digit phone number to call in emergency situations")
-    temp_number = input("do NOT include any dashes in the phone number")
-
-    if len(temp_number) == 10:
-        for i in range(len(temp_number)):
-            if not temp_number[i].isnumeric():
-                print("NUMBER DECLINED")
-            else:
-                done = True
-    else:
-        print("NUMBER DECLINED")
-
+# Access individual values in config_data
+account_sid = config_data["account_sid"]
+auth_token = config_data["auth_token"]
+twilio_phone_number = config_data["twilio_phone_number"]
+temp_number = config_data["temp_number"]
 
 temp_number = "+1" + temp_number
 recipient_phone_number = int(temp_number)

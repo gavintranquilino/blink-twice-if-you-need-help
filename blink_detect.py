@@ -8,7 +8,7 @@ face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye_tree_eyeglasses.xml')
 
 # Starting the video capture
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 if not cap.isOpened():
     print("Failed to open camera")
     exit()
@@ -24,8 +24,8 @@ last_blink_time = 0
 while ret:
     ret, img = cap.read()
 
-    # Mirror image horizontally
-    img = cv2.flip(img, 1)
+    # Mirror image vertically
+    img = cv2.flip(img, 0)
 
     # Converting the recorded image to grayscale
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
