@@ -4,9 +4,6 @@ import cv2
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye_tree_eyeglasses.xml')
 
-# Variable store execution state
-first_read = True
-
 # Starting the video capture
 cap = cv2.VideoCapture(0)
 ret,img = cap.read()
@@ -37,19 +34,9 @@ while(ret):
             # Examining the length of eyes object for eyes
             if (len(eyes) >= 2):
                 # Check if program is running for detection 
-                if (first_read):
-                    cv2.putText(img, "Eye detected press s to begin", (70, 70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 2)
-                else:
-                    cv2.putText(img, "Eyes open!", (70, 70), cv2.FONT_HERSHEY_PLAIN, 2, (255, 255, 255), 2)
+                cv2.putText(img, "Eyes Open", (70, 70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 2)
             else:
-                if (first_read):
-                    # To ensure if the eyes are present before starting
-                    cv2.putText(img, "No eyes detected", (70, 70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 0, 255), 2)
-                else:
-                    # This will print on console and restart the algorithm
-                    print("Blink detected--------------")
-                    cv2.waitKey(3000)
-                    first_read=True
+                cv2.putText(img, "No eyes detected", (70, 70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 0, 255), 2)
             
     else:
         cv2.putText(img, "No face detected", (100, 100), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 2)
@@ -59,9 +46,6 @@ while(ret):
     a = cv2.waitKey(1)
     if (a == ord('q')):
         break
-    elif (a == ord('s') and first_read):
-        # This will start the detection
-        first_read = False
 
 cap.release()
 cv2.destroyAllWindows()
