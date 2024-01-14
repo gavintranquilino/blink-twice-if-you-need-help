@@ -8,7 +8,13 @@ twilio_phone_number = +12159774320
 
 
 # simple number entry for what number you want to call - simple boolean done system
-recipient_phone_number = +5195055856
+
+done = False
+while not done:
+    print("Please enter a ten digit phone number to call in emergency situations")
+    entered_phone_number = int(input("do NOT include any dashes in the phone number"))
+    recipient_phone_number = +1
+    recipient_phone_number.append(entered_phone_number)
 
 # Create a Twilio client
 client = Client(account_sid, auth_token)
